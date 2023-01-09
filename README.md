@@ -1,7 +1,7 @@
 # javascript
 我的javascript学习笔记
 
-JS简介
+1.JS简介
   Netscape 网景公司 Navigator 浏览器 静态网页 无动态交互行为 增加动态交互功能 javascript 
   脚本语言 语言不需要经过编译器的编译 直接交给解析器和浏览器一行一行的执行
   javascript解析器 把代码转换为机器语言浏览器才能执行
@@ -33,7 +33,7 @@ JS简介
          NodeJS中的fs模块可以直接操作计算机系统中的各种文件
          怎样通过这个标准进行扩展，通过标准开发出更好的工具
          
-HelloWorld
+2.HelloWorld
   <!-- JS代码需要编写到script中 -->
   学习任何编程语言首先学输出语句，输出语句向外部输出内容
   <script>
@@ -41,4 +41,10 @@ HelloWorld
       console.log("Where?"); //在控制台输出一条日志 开发调试中常用 在控制台中一般用户看不到 没删的话在控制台输出，不会显示在网页中 （方法）
       document.write('where I am?'); //往文档中写内容 文档就是网页，网页就是文档 向网页中输出内容 具体往body中写
   </script>
+  
+ 3.JS的编写位置
+   <!-- 可以将js编写到网页内部的script标签 -->
+   <script>
+       alert("haha!")
+   </script>
     
