@@ -47,4 +47,7 @@
    <script>
        alert("haha!")
    </script>
+   
+   script.js 文件
+   alert("外部的js文件")
     
