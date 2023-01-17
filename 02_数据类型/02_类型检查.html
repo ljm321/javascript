@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型检查</title>
+    <script>
+        let a = 10;
+        let b = 10n;
+
+        //a + b //会报错 number不能和bigint进行运算  如果没有报错表示使用的js是以前的版本
+
+        /*
+        typeof 运算符  //对变量的值进行运算，通过打印可以得到对象的值的类型
+            - typeof 用来检查不同的值的类型
+            - 它会根据不同的值返回不同的结果
+        */
+
+        console.log(typeof a); //number
+        console.log(typeof b); // bigint
+    </script>
+</head>
+<body></body>
+</html>
