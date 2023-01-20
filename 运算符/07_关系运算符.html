@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系运算符</title>
+    <script>
+        /*
+            关系运算符
+                - 关系运算符用来检查两个值之间的关系是否成立
+                    成立返回true，不成立返回false
+
+                    >
+                        - 用来检查左值是否大于右值
+                    >=
+                        - 用来检查左值是否大于等于右值
+                    <
+                        - 用来检查左值是否小于右值
+                    <=
+                        - 用来检查左值是否小于等于右值
+
+                    注意：
+                        当对非数值进行关系运算时，它会先将其转换为数值然后再比较
+                        当关系运算符的两端是两个字符串，它不会将字符串转换为数值，
+                            而是逐位的比较字符的Unicode编码     第一位比较的了，后面的字符就不用管
+                                如果两端字符串的第一位相同，将往下一位比较，依次类推  "abc" < "ada" ,如果比较的了，后面的字符就不用管
+                            利用这个特点可以对字符串按照字母排序
+
+
+        */
+
+        let result = 10 > 5; //true
+        result = 5 > 5; //false
+        result = 5 >= 5; //true
+
+        result = 5 < "10"; //true
+        result = "1" > false; //true
+        
+        result = "a" < "b"; //true 两端都是字符串，比较两端的字符的Unicode编码
+        result = "abc" < "b"; //true 比较a和b的Unicode编码，已经比较了，后面的bc不用比较
+        result = "bbc" < "bc"; // true 当两边第一位相同时无法比较，才会比较第二位，依次类推
+
+        result = "12" < "2"; //true  两个字符串，解释器不检查两个字符串里是数值还是字母，所以比较时，即使字符串里的是数值，也会逐位比较Unicode编码。两端字符串的第一位都不相同可以进行比较，所以后面的就不用比较。
+        
+        // 检查num是否在5和10之间
+        let num = 60;
+        //result = 5 < num < 10; //true 错误的写法 当运算符优先级一样时，从左往右执行。
+        // 这一行代码 会先执行 5 < num 这个判断然后再把它的结果和 10 进行比较。
+        // 5 < num 的比较结果是true true转换为数值为 1 然后再比较 1 < 10 最终的结果是true
+        // 所以不能这么写 错误的写法 
+        // 运算符 两个功能 1，运算  2，返回结果 ；代码从左往右执行 ；先 5 < num 运算，返回结果为true，转为数值1再和10进行运算比较，最后为true，返回的结果为true 
+
+        //这一个问题是由两个判断构成的 先判断num是否大于5的结果 和num是否小于10的结果 两个结果进行逻辑运算
+        result = 5 < num && num<10; //false 几个比较大小的运算结果，一定要注意逻辑运算
+        console.log(result);
+
+        // 逻辑运算符最常用的是连接关系运算符
+        // 多个关系运算符时用逻辑运算符连接起来
+    </script>
+</head>
+<body></body>
+</html>
