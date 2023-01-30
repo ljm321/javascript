@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if-else</title>
+    <script>
+        /*
+            if-else语句
+            - 语法：
+                if(条件表达式){
+                    语句...
+                }else{
+                    语句...
+                };
+
+            - 执行流程：
+                if-else执行时，先对条件表达式进行求值判断，
+                    如果结果为true 则执行if后的语句
+                    如果结果为false 则执行else后的语句
+            
+            if-else if-else语句：
+            - 语法:
+                if(条件表达式){
+                    语句...
+                }else if(条件表达式){
+                    语句...
+                }else if(条件表达式){
+                    语句...
+                }else{
+                    语句
+                };
+            - 执行流程：
+                if-else if-else语句，会自上向下依次对if后的条件表达式进行求值判断，
+                    如果条件表达式结果为true，则执行当前if后的语句，执行完毕语句结束
+                    如果条件表达式结果为false，则继续向下判断，直到找到true为止
+                    如果所有的条件表达式都是false，则执行else后的语句
+
+            注意：
+                if-else if-else语句中只要有一个代码块被执行，
+                    一旦有执行的代码块，下边的条件都不会在继续判断了
+                    所以一定要注意，条件的编写顺序
+        */
+
+        let age = 70;
+
+       // if(age >= 60){
+       //     alert('你已经退休了！');
+       // }else{
+       //     alert('你没有退休！');
+       // };
+
+       age = 200;
+
+       //if(age >= 100){                     //条件没有冲突
+        //    alert('你真是一个长寿的人！');
+       //}else if(age >= 80){
+         //   alert('你比楼上那位还年轻不小！');
+      // }else if(age >= 60){
+        //    alert('你已经退休了！');
+       //}else if(age >= 30){
+         //   alert('你已经步入中年了！');
+       //}else if(age >= 18){
+         //   alert('你已经成年了！');  
+       //}else{
+        //alert('你还未成年！');
+       //};
+
+       age = 68;
+
+       if(age >= 18 ){                   //可以把条件写的更细一些 age >= 18 && age < 30
+            alert('你已经成年了！');     //当age的值>=18时只会执行这一行代码，因为条件为true，执行后面的语句，然后全部结束。变成死语句
+       }else if(age >= 30){              //没有注意条件判断的执行顺序   条件顺序写的有问题  条件之间发生冲突 语义有问题
+            alert('你已经步入中年了！');   //还可以调整条件的顺序
+       }else if(age >= 60){
+            alert('你已经退休了！');
+       }
+    </script>
+</head>
+<body></body>
+</html>
