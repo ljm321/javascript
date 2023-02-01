@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象</title>
+    <script>
+        /*
+            数据类型：
+                原始值
+                    1.数值 Number
+                    2.大整数 BigInt
+                    3.字符串 String
+                    4.布尔值 Boolean
+                    5.空值 Null
+                    6.未定义 Undefined
+                    7.符号 Symbol
+
+                对象
+                - 对象是JS中的一种复合数据类型
+                    它相当于一个容器，在对象中可以存储各种不同类型数据
+                        对象就是一个容器，把这些值装到一起，体现他们的关系，表示值的关系，对值进行分组
+
+                原始值只能用来表示一些简单的数据(如人的身高)，不能表示复杂数据(如人的信息『包括身高，年龄.....』)
+
+                比如：现在需要在程序中表示一个人的信息
+        */
+        //只能表示独立的数据，不能表示它们分组的关系  需要变量或者是原始值体现分组的关系 把这三个放在同一个地方
+        let name = "孙悟空";
+        let age = 18;
+        let gender = "男";
+
+        //创建对象
+        let obj = Object();
+        
+        /*
+            对象中可以存储多个各种类型到数据
+                对象中存储的数据，我们称为属性
+
+            向对象中添加属性：
+                对象.属性名 = 属性值
+
+            读取对象中的属性
+                对象.属性名  obj.name
+
+            读取对象中的属性
+                对象.属性名
+                - 如果读取的是一个对象中没有的属性
+                    不会不错而是返回undefined
+        */
+       obj.name = "孙悟空";
+       obj.age = 18;
+       obj.gender = "男";
+
+       console.log(obj);
+       console.log(obj.name);
+       console.log(obj.age);
+       console.log(obj.gender);
+
+       //修改属性
+       obj.name =  "Tom sun";
+       console.log(obj.name);
+       console.log(obj);
+
+       //删除属性
+       delete obj.name;
+       console.log(obj);
+       console.log(obj.name);
+    </script>
+</head>
+<body></body>
+</html>
