@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象字面量</title>
+    <script>
+        let obj = Object();
+        /*
+
+            对象字面量
+                - 可以直接使用{}来创建对象
+                - 使用{}所创建的对象，可以直接向对象中添加属性
+                - 语法：
+                {
+                    属性名:属性值,
+                    [属性名]:属性值,
+                }
+        */
+
+        let obj2 = {age:18, address:"花果山"}; //创建对象的同时，指定了对象当中的两个属性
+
+        console.log(obj2);
+
+        obj2.name = "孙悟空";
+
+
+        console.log(obj);
+        console.log(obj2);
+        console.log(typeof obj2);
+
+        let mySymbol = Symbol();
+        let newSymbol = Symbol();
+         
+        //这样写结构更清晰
+        let obj3 = {
+            name:"猪八戒",
+            age:30,
+            ["gender"]:"男",
+            [mySymbol]:"特殊的属性",
+            [newSymbol]:"123",
+            hello:{
+                a:1,
+                b:true
+            }
+        };
+
+        console.log(obj3.gender);
+        console.log(obj3);
+        console.log(obj3[newSymbol]);
+        console.log(obj3.hello.a);
+    </script>
+</head>
+<body></body>
+</html>
