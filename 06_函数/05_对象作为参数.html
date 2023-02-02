@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象作为参数</title>
+    <script>
+        /*
+            {}是new Object()的简写，所以是重新创建了空对象a
+        */
+
+        function fn(a){
+            //console.log("a =", a);
+            //console.log(a.name);
+            
+            // {}是new Object()的简写，所以是重新创建了空对象a
+            //把obj对象的内存地址赋值给变量a，再重新把空值的内存地址赋值给变量a 
+            //a = {};  //修改变量时，只会影响当前的变量
+            a.name = '猪八戒'; //修改对象时，如果有其他变量指向该对象则所有指向该对象的变量都会受到影响 因为两者都指向同一个内存地址，现在对象被改变了，它又是从内存地址拿数据，所以都会改变
+            console.log(a);
+        };
+
+        //对象可以作为参数传递
+        let obj = {name:'孙悟空'};
+
+        //传递实参时，传递并不是变量本身，而是变量中存储的值（内存地址）
+        fn(obj);
+
+        console.log(obj);
+
+        //函数每次调用，都会重新创建默认值
+        function fn2(a = {name:"沙和尚"}){
+            console.log("a =", a);
+            a.name = "唐僧";
+            console.log("a =", a);
+        };
+
+        //每次函数执行都会重新创建一个对象
+        fn2(); //沙和尚 唐僧  // 函数调用完就在内存中销毁了，所以第二次调用还是打印 沙和尚 唐僧
+        // 函数每次调用，都会创建新的对象
+        fn2(); // 沙和尚 唐僧 // 当函数执行完毕，会释放掉函数内部创建的所有变量的内存
+
+        let obj3 = {name:"沙和尚"};
+
+        function fn3(a = obj3){
+            console.log("a =", a);
+            a.name = "唐僧";
+            console.log("a =", a);
+        };
+
+        fn3();//沙和尚 唐僧  //因为先用哦bj指向的内存中那个对象的地址，第一次调用时，函数内部的a指向了与外部obj2相同的对象，然后通过a修改那个共同指向的对象，将其name改为唐僧
+        console.log(obj3);//唐僧  
+        fn3();//唐僧 唐僧  //函数执行完毕，按理说应该释放变量a指向的那个对象，但是由于这个对象还有外部的obj2指着，通过a.name ,所以对象的属性值被修改为“唐僧”，再执行函数时，obj2属性值为唐僧
+    </script>
+
+</head>
+<body></body>
+</html>
