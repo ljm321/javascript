@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数的参数</title>
+    <script>
+        const fn = (a, b) => {
+            console.log("a =", a);
+            console.log("b =", b);
+        }
+
+        //当箭头函数中只有一个参数时，可以省略()  没有参数时，一定要写()
+        const fn2 = a => {
+            console.log("a =", a);
+        };
+
+        //fn2(123)
+
+        //函数声明，函数表达式，箭头函数都可以这样写
+        //定义参数时，可以为参数指定默认值
+        //默认值，会在没有对应实参时生效
+        const fn3 = (a=10, b=20, c=30) => {
+            console.log("a =", a);
+            console.log("b =", b);
+            console.log("c =", c);
+        };
+
+        fn3(1, 2, 3);
+        fn3(1, 2); //默认值，会在没有对应实参时生效
+
+        //写参数的默认值时，要注意浏览器版本问题，因为es5不支持，在老版本手机会出错
+    </script>
+</head>
+<body></body>
+</html>
