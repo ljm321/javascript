@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的返回值</title>
+    <script>
+        function sum(a, b){
+            //console.log(a + b); //计算的结果可以有各种各样的作用，并不一定要输出到控制台，如用来和其他值再比较，用来修改样式...
+            //计算完成后，将计算的结果返回而不是直接打印
+            return a + b
+        }
+
+        //sum(1, 2)
+
+        function fn(){
+
+            /*
+                    函数值 也就是返回值（可以自定义返回值）
+                在函数中，可以通过return关键字来指定函数的返回值
+                    返回值就是函数的执行结果，函数调用完毕返回值便会作为结果返回
+
+                任何值都可以作为返回值使用（包括对象和函数之类）
+                    如果return后不跟任何值，则相当于返回undefined
+                    如果不写return，那么函数的返回值依然是undefined
+
+                return一执行函数立即结束
+            */
+           //return "hello"
+           //return {name:"孙悟空"}
+           //return ()=>alert(123)
+           //return //undefined
+
+           alert(123)
+           return // return一执行函数立即结束
+           alert(456)
+        }
+
+        let result = fn()
+
+        console.log(fn())
+
+        result = sum(123, 456)
+
+        //可以利用返回值再计算
+        result = sum(10, result)//返回值的用法可以根据实际情况运用
+
+        console.log("result =", result)
+    </script>
+</head>
+<body></body>
+</html>
