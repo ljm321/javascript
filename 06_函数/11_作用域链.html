@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作用域链</title>
+    <script>
+        /*
+                词法环境对象链      
+
+            作用域链
+                - 当我们使用一个变量时
+                    JS解释器会优先在当前作用域中寻找变量，
+                        如果找到了则直接使用
+                        如果没找到，则去上一层作用域中寻找，找到了则使用
+                        如果没找到，则继续去上一层寻找，以此类推
+                        如果一直到全局作用域都没找到，则报错， ××× is not defined
+
+                        作用域链就是找变量的一个流程
+                               使用变量时，JS是怎么去找变量的
+        */
+
+        let a = 10
+
+        {
+            let a = "第一代码块中的a"
+            {
+                let a = "第二代码块中的a"
+                console.log(a)           //这样取变量名是故意给自己留bug
+            }
+        }
+
+        let b = 33
+
+        function fn(){
+            console.log(b)
+        }
+
+        fn()
+
+        let c = 33
+
+        function fn1(){
+
+            let c = 44  //就近原则
+            console.log(c)
+        }
+
+        fn1()
+
+        let d = 55
+
+        function fn2(){
+            
+            let d = 66
+
+            function fn3(){
+                //let d = 77
+                console.log(d)
+            }
+
+            fn3()
+        }
+
+        fn2()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
