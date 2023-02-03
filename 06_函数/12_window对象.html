@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window对象</title>
+    <script>
+        /*
+            Window对象
+                - 在浏览器中，浏览器为我们提供了一个window对象，可以直接访问
+                        浏览器给我们提供了一个对象 一打开网页就创建了这个对象
+                - window对象代表的是浏览器窗口，通过该对象可以对浏览器窗口进行各种操作
+                    除此之外window对象还负责存储JS中的内置对象和浏览器的宿主对象
+                - window对象的属性可以通过window对象(window.~~())访问，也可以直接访问(~~())
+                - 函数就可以认为是window对象的方法
+        */
+       alert(window)
+
+       String() // 为什么能直接调用 因为是在ES标准里所定义的 这些对象已经定义好了 这些对象就叫做内置对象 存到window对象中
+       Number()
+
+       alert() //宿主对象 它是浏览器所提供的对象 也存到了window当中 document.write console.log
+
+       for(let a in window){
+        console.log(a, window[a])
+       }
+
+       //window.alert(123)
+
+       window.console.log("哈哈")
+
+       window.a = 10 //向window对象中添加的属性会自动成为全局变量
+       //console.log(a)  //10  console.log(window.a)
+
+       /*
+             var 用来声明变量，作用和let相同，但是var不具有块作用域
+                                                    函数作用域 全局作用域该有还是有
+                - 在全局中使用var声明的变量，都会作为window对象的属性保存
+                - 使用function声明的函数，都会作为window的方法保存
+                - 使用let声明的变量不会存储在window对象中，而存储在一个秘密的小地方（无法访问）
+                        作用域越大，优先级越低
+                - var虽然没有块作用域，但有函数作用域
+                - 在局部作用域中，如果没有使用var或let声明变量，则变量会自动成为window对象的属性，也就是全局变量
+       */
+
+       var b = 20 // window.b = 20
+
+       function fn(){
+            alert("我是fn")
+       }
+
+       //console.log(window.b)
+
+       //window.fn()
+
+       let c = 33 //window 和 let 相同的变量 优先找 let 
+       window.c = 44  //一般不会给变量c这样赋值两次
+       console.log(c) //33 优先找秘密的小地方
+       console.log(window.c)
+
+       function fn2(){
+            //var d = 10 //var虽然没有块作用域，但有函数作用域
+            d = 10 //在局部作用域中，如果没有使用var或let声明变量，则变量会自动成为window对象的属性，也就是全局变量
+            // 不建议这样做，会造成代码的混乱，使用变量要先声明
+            //不用var或者let声明的变量会直接进到window属性，就是说变量有两个存储位置，使用前最好先声明
+       }
+
+       fn2()
+
+       console.log(d)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
