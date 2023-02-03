@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提升</title>
+    <script>
+        /*
+            变量的提升
+                    - 使用var声明的变量，它会在所有代码执行前被声明
+                        所以我们可以在变量声明前就访问变量
+
+                    var的优先级非常高，所有代码还没有执行的时候，浏览器js解析器先去找代码里有没有var，有var，把var与变量提升到所有的代码前边，让它们先执行，但没有赋值，所有提升var执行完了，才执行代码
+
+                    函数优先级比变量高
+
+            函数的提升
+                - 使用函数声明创建的函数，会在其他代码执行前被创建
+                    所以我们可以在函数声明前调用函数  只适用于函数声明
+
+            let声明的变量实际也会提升，但是在赋值之前解析器禁止访问该变量
+
+
+            提升是为了分配好内存
+            
+            为其他预留内存空间，减少内存重新分配的次数，提升代码的执行的性能
+        */
+
+        console.log(b)
+
+            //b = 10 // 报错为 b is not defined  两者互相证明let声明的变量提升
+        let b = 10 //浏览器报错 Cannot access 'b' before initialization
+                // let b 会被提升，但是未被赋值前，禁止访问
+        fn()
+
+        //函数声明被提升 function有优先级 js解析器把整个函数往前提 也是在其他代码执行之前执行
+        function fn(){
+            alert("我是fn函数")
+        }
+
+
+
+        //a = 10 //window.a = 10
+
+        console.log(a)
+
+        var a = 10 //这里会分为两部分执行，1.var a 先执行，会被解释器提升 2.在20行时执行 a = 10 赋值才完成
+
+        // a = 10  //这个没有用var提前，会报错 
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
