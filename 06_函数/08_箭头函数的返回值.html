@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数的返回值</title>
+    <script>
+        const sum = (a, b) => {
+            return a + b
+        }
+
+        let result = sum(123, 456)
+
+        console.log(result)
+
+        /*
+            箭头函数的返回值可以直接写在箭头后  整个函数只有一个语句
+                如果直接在箭头函数后设置对象字面量为返回值时，对象字面量必须使用()括起来
+        */
+        const sum1 = (a, b) => a + b
+
+        let result1 =sum1(123, 456)
+
+        console.log(result1)
+
+        //const fn = () => {name:"孙悟空"} //js会理解成里面是要执行的代码块，而不是对象，所以undefined，没有定义成对象
+        const fn = () => ({name:"孙悟空"})  // 对象要用()括起来，用{}会报undefined 
+
+        result2 = fn()
+
+        console.log(result2)
+        
+
+    </script>
+</head>
+<body></body>
+</html>
