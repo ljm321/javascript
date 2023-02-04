@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <script>
+        /*
+            var a = 2 是分成两步，首先是var a ，然后是a = 2， 变量提升只是将var a 提到最前面
+        */
+
+        var a = 1 //声明了全局变量a = 1
+        function fn(){
+            a = 2 //函数里没有声明a，就没有a，就去外层作用域找，外层作用域有全局的变量a，那a就是全局变量a，然后函数里再赋值给变量a
+            console.log(a) //2
+        }
+        fn()
+        console.log(a) //2
+
+        // 变量和函数的提升同样适用于函数作用域
+        var a = 1           // 已经声明的变量a 就算未赋值 不会再出函数作用域找 报undefined
+        function fn(){      // a 未声明才会往函数作用域外部找有没有声明的变量a  
+            console.log(a) //undefined
+            var a = 2      // 在函数里声明了变量a 这个a就是局部变量a 这里的赋值对于全局变量a没有影响
+            console.log(a) //2
+        }
+        fn()
+        console.log(a) //1
+
+        var a = 1
+        function fn(){
+            console.log(a) //1
+            a = 2           
+            console.log(a) //2
+        }
+        fn()
+        console.log(a)     //2
+
+        //调用形参就相当于在函数中声明了对应的变量，但是没有赋值
+        var a = 1
+        function fn(a){
+            console.log(a)  //undefined
+            a = 2
+            console.log(a) //2
+        }
+        fn()
+        console.log(a) //1
+
+        var a = 1
+        function fn(a){
+            console.log(a) //10
+            a = 2
+            console.log(a) //2
+        }
+        fn(10)
+        console.log(a) //1
+
+        var a = 1
+        function fn(a){
+            console.log(a) //1
+            a = 2
+            console.log(a) //2
+        }
+        fn(a)
+        console.log(a) //1
+
+
+        /*
+            难点在于代码的执行顺序
+                代码是一行一行的写
+                但是不一定按顺序一行一行的执行
+                有些代码会先执行（被提升）
+                有的不会执行 1.遇到相同的声明（var）变量不会被执行而是进行赋值操作或者只有声明（var）变量时跳过声明（var）变量这行代码
+                            2. 函数声明会被提升 执行到函数声明的代码位置时 会忽略掉 不会对相同的变量进行赋值操作 因为函数声明被提升执行
+        */
+
+        // var代码只负责声明变量 重复的变量只需要声明一个就行了 其他进行赋值操作 所以var a 的提升有一个就行了 已经有a了就不需要再创建变量a，没有变量a才会操作创造变量a
+        console.log(a) //2
+        // var a只是声明 function a()会赋值  a已经赋值了 
+
+        var a = 1   //赋值不会提升 在72行执行  在74行打印
+
+        console.log(a) //1
+
+        function a(){  //整一个函数被提升，在这里不会执行，在提升的位置赋值了，在这几行代码位置里不会再次执行赋值操作，因为已经在提升时完成了赋值操作，所以这里的代码不影响已经赋值的变量，赋值的变量来到这一行不会赋值
+            alert(2)
+        } // 这函数代码不会对变量a再进行赋值，因为，函数提升时已经赋值完成了
+
+        console.log(a)//1
+
+        var a = 3
+
+        console.log(a)//3
+
+        var a = function(){
+            alert(4)
+        }
+
+        console.log(a) //4
+
+        var a //被提升了 在这里的var a 根本不执行 在提升的位置执行 往后执行的是赋值
+
+        console.log(a) //4
+
+        a = 5
+
+        console.log(a) //5
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
