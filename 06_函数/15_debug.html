@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>debug</title>
+    <script>
+        /*
+
+            预处理
+
+            bug就是错误
+            程序出错了，出bug了
+            debug 调试bug
+
+            主要作用：
+                在代码出问题的时候，通过debug，对代码进行调试
+
+            可以通过debug 使代码的执行过程变慢 可以更清楚代码执行的过程
+        */
+
+        //debugger //在代码中打一个断点  代码执行到这一行会停止，点击下一步，才继续执行
+        
+        let a = 10
+
+        {
+            let a = "第一代码块中的a"
+            {
+                let a = "第二代码块中的a"
+                console.log(a)           //这样取变量名是故意给自己留bug
+            }
+        }
+
+        let b = 33
+
+        function fn(){
+            console.log(b)
+        }
+
+        fn()
+
+        let c = 33
+
+        function fn1(){
+
+            let c = 44  //就近原则
+            console.log(c)
+        }
+
+        fn1()
+
+        let d = 55
+
+        function fn2(){
+            
+            let d = 66
+
+            function fn3(){
+                //let d = 77
+                console.log(d)
+            }
+
+            fn3()
+        }
+
+        fn2()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
