@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的结构</title>
+    <script>
+
+        /*
+
+            *** 栈存的是引用地址，值放在队内存中
+            *** 先找自身，再找父类，再找原型
+
+            对象中存储属性的区域实际有两个
+                1. 对象自身
+                    - 直接通过对象所添加的属性，位于对象自身中
+                    - 在类中通过 x = y 的形式添加的属性，位于对象自身中
+
+                2. 神秘位置？（原型对象）【prototype】
+                    - 对象中还有一些内容，会存储到其他的对象里（原型对象）
+                    - 在对象中会有一个属性用来存储原型对象，这个属性叫做__proto__
+                    - 原型对象也负责为对象存储属性，
+                        当我们访问对象中的属性时，会优先访问对象自身的属性，
+                        对象自身不包含该属性时，才会去原型对象中寻找
+
+                    - 会添加到原型对象中的情况：
+                        1.在类中通过×××(){}方式添加的方法，位于原型中
+                        2.主动向原型中添加的属性或方法
+
+
+                        *** 当然有意义，如果是用 x = y 的形式添加的方法，那么每一个实例化的对象自身都有这个方法，而如果是通过 ×××(){}添加的方法，是所有实例化对象共享的
+
+                                                内存
+
+                        const p = new Person()
+                                        对象                       原型对象
+                                0×11        
+                                name         孙悟空          
+                                age             18
+                                __proto__       0×ff ------>  0×ff
+                                                            sayHello    function
+
+        */
+
+        class Person {
+            name = "孙悟空"
+            age = 18
+            //fn = () => {} // 这个也是对象自身中 在类中通过 x = y 的形式添加的属性，位于对象自身中
+
+            constructor(){
+                this.gender = "男"  //向对象自身添加属性
+            }
+
+           // sayHello = (){  //通过 x = y 的形式添加的属性，位于对象自身中
+           //     console.log("Hello,我是", this.name)
+           // }
+ 
+            sayHello(){  //存储到原型对象里 ×××(){}
+                console.log("Hello,我是", this.name)
+            }
+        }
+
+        const p = new Person()
+
+        // p.address = "花果山"
+
+        p.sayHello = "hello"
+
+       // p.address = new Person() //对象中存储属性的区域 对象自身 直接添加到对象当中
+
+        console.log(p)
+
+        //console.log(p.sayHello)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
