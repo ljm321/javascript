@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装</title>
+    <script>
+        /*
+            面向对象的特点
+                封装，继承和多态
+
+            1.封装
+                - 对象就是一个用来存储不同属性的容器
+                - 对象不仅负责存储属性，还要负责数据的安全(例如 age应该是大于0的数字，不能是其他的值【如 哈哈】)
+                - 直接添加道对象中的属性，并不安全，因为它们可以被任意的修改
+                - 如何确保数据的安全:
+                    1.私有化数据 
+                        - 将需要保护的数据设置为私有，只能在类内部使用 
+                            ** 在类内部定义公共方法get让外部获取私有属性 在类内部设置一个返回参数的函数
+                    2.提供setter和getter方法来开放对数据的操作  
+                        - 属性设置私有，通过getter setter方法操作属性带来的好处
+                                1.可以控制属性的读写权限
+                                    ** 构造函数只是生成实例的时候对属性赋值，后续如果要修改值的话，构造函数没法做到
+                                    ** getter和setter是给私有属性获取和修改提供一个渠道，是后续修改或者获取值的时候用的 
+                                2.可以在方法中对属性的值进行验证
+                
+                - 封装主要用来保证数据的安全
+                - 实现封装的方式：
+                    1.属性私有化 加#
+                    2.通过getter和setter方法来操作属性
+                        get 属性名(){
+                            return this.#属性
+                        }
+
+                        set 属性名(参数){
+                            this.#属性 = 参数
+                        } //可以添加验证逻辑 来判断修改的数据合不合法
+        */
+
+
+        class Person {
+            #address = "花果山" //实例使用#开头就变成了私有属性，私有属性只能在类内部访问
+                                //私有属性不能通过对象访问 p1.#address不能这样访问会报错
+                                // #address只能在类内部使用 
+
+                    #name
+                    #age
+                    #gender //私有属性必须先声明，才能使用
+            constructor(name, age, gender) {
+                this.#name = name
+                this.#age = age
+                this.#gender = gender
+            }
+
+            sayHello() {
+                console.log(this.#name, 
+                this.#address)
+            }
+
+            //getter方法，用来读取属性
+            getName(){
+                return this.#name
+            }
+            //为什么要这么设置
+            // 为了防止轻易修改和访问，需要通过发、特殊方法来访问和修改(不会被直接读取)
+            // 属性私有化，方法公开化，保护数据安全
+            // 至少能对设置的属性进行数据校验
+            //使用getter和setter方法在调用和修改属性时可以添加监听，比如设置数据类型检测，如果不符合类型就不更新
+
+            //setter方法，用来设置属性
+            setName(name){
+                this.#name = name
+            }
+            //setName可以对属性进行限定处理，又有安全的余地
+            //可以添加验证的，数据不符合就不允许修改
+            //在外部写也可以数据验证，至于这样写就是为了体现封装，这样利于管理复用
+            //用函数就是为当前最终数据的增删改查做一个更好的封装，说到底就是为了效率和好用
+            //set方法传入的参数一般会进行业务逻辑验证再赋值的
+            //方法内部逻辑可以筛选
+
+            getAge(){
+                return this.#age
+            }
+
+            //只读不改 不提供setter方法
+            //通过方法来操作属性，等于把读写给分开
+            //属性的权限更灵活
+
+            setAge(age){
+
+                //在赋值之前进行判断
+                if(age >= 0){
+                    this.#age = age
+                } //通过逻辑判断age是否合法
+                
+            }
+            //封 把属性封到类当中，对象不能直接访问，只能通过方法去访问
+
+            get gender(){ //不用p1.getName()这样的方法来调用,通过p1.gender
+                console.log("getter执行了")
+                return this.#gender
+            } //get的方法获取属性最后一定要把值返回
+            // 当我们通过这个方法定义gender的时候，我们可以用p1.gender语法来获取
+
+            set gender(gender){
+                this.#gender = gender
+            }//修改，要提供一个参数，不提供形参，实参传不进来
+        }
+
+        const p1 = new Person("孙悟空", 18, "男")
+
+        //p1.age = -11 //现实世界没有-11岁的人，所以这个-11是不合法的数据 
+
+        //p1.getName()
+        p1.set(-11) //变得麻烦了 原来是p1.age = 11 希望用p1.age 这种方式来设置值和读取值也能确保数据的安全
+
+        p1.setName("猪八戒")
+
+        console.log(p1)
+
+        p1.gender = "女"  //通过属性调用方法
+
+        cosnole.log(p1.gender) //p1.gender这样写,实际上调用get gender(){}方法
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
