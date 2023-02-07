@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数中的this</title>
+    <script>
+        /*
+            this
+                - 函数在执行时，JS解析器每次都会传递进一个隐含的参数
+                - 这个参数就叫做 this
+                - this会指向一个对象             //  this指向函数所挂载的对象
+                    - this所指向的对象会根据函数调用方式的不同而不同
+                        1.以函数形式调用时，this指向的是window
+                        2.以方法的形式调用时，this指向的是调用该方法的对象
+                            obj2.test() 调用obj2 test的方法 obj2是对象
+
+                    - 通过this可以在方法中引用调用方法的对象
+        */
+
+        function fn(){
+            console.log(this === window)
+            console.log("fn打印", this)
+        }
+
+        const obj = {name:"孙悟空"}
+        obj.test = fn
+
+        const obj2 = {name:"猪八戒", test:fn}
+
+        //fn()
+        //obj.test() //{name:"孙悟空"}
+        obj2.test()  //{name:"猪八戒", test:fn}
+
+        const obj3 = {
+            name:"沙和尚",   //如果字符串改名了
+            sayHello:function(){
+                console.log(this.name) //这里的字符串如果没改，就不会打印新的值，依然是"沙和尚" 不会跟随name的值改变而改变
+            }                          // 一起改，代码多的话，也麻烦。
+        }
+        const obj4 = {
+            name:"唐僧",
+            sayHello:function(){
+                console.log(this.name)
+            }
+        }
+
+            //调用方法的时候会隐式传入this对象，使用对象.方法()时传入的this就是这个对象本身
+        //为两个对象添加一个方法，可以打印自己的名字
+        obj3.sayHello()
+        obj4.sayHello()
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
