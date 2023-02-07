@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多态</title>
+    <script>
+        class Person{
+            constructor(name){
+                this.name = nsme
+            }
+        }
+
+        class Dog{
+            constructor(name){
+                this.name = name
+            }
+        }
+
+        class Test{
+
+        }
+
+        const dog = new Dog("旺财")
+        const person = new Person("孙悟空")
+        const test = new Test()
+
+        console.log(dog)
+        console.log(person)
+
+        /*
+            定义一个函数，这个函数将接收一个对象作为参数，他可以输出hello并打印对象的name属性
+
+                **父类的引用指向子类的对象
+            
+            多态
+
+                ** 同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果
+
+                - 在JS中不会检查参数的类型，所以这就意味着任何数据都可以作为参数传递
+                - 要调用某个函数，无需指定的类型，只要对象满足某些条件即可
+                - 如果一个东西走路像鸭子，叫起来像鸭子，那么它就是鸭子
+                - 多态为我们提供了灵活性
+                   //注意，是不是有些地方有些对象不适合调用方法，可能要做个判断。在使用的时候，还要根据实际的开发情况选择技术
+        */
+                        //函数的参数是多态的，对类型无关，关心参数的特点，只要满足某些特点满足某些条件，就可以作为参数去使用
+        function sayHello(obj){
+            //if(obj instanceog Person){
+            console.log("Hello," + obj.name)
+             // }
+        } //调用sayHello()，有name属性，就不会出问题
+
+        sayHello(test)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
