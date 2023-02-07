@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型</title>
+    <script>
+        /*
+            p的原型对象是Person(构造函数)，Person的原型对象是object，object的原型为空（null）
+            p--> Person--> Object--> null
+            原型对象类似之前讲的公共父类，把共有属性提到父类中，子类进行继承
+            vue里头用原型的知识可以做事件总线
+
+        */
+
+        class Person{
+            name = "孙悟空"
+            age = 18
+            
+            sayHello(){
+                console.log("Hello,我是", this.name)
+            }
+        }
+
+        const p = new Person()
+
+        console.log(p)
+
+        /*
+           访问一个对象的原型对象
+                对象.__proto__  // = 赋了个新值，会出现奇怪的问题，不要赋值
+                    //一般情况下，以下划线开头的属性都是隐藏属性，不希望直接去访问的一个属性，也不希望去修改，会导致一些程序的怪异
+                Object.getPrototypeOf(对象)   //相对安全  没办法直接通过 = 去修改整个的对象
+
+            原型对象中的数据
+                1.对象中的数据（属性，方法等） //
+                2.constructor （对象的构造函数） //通过它可以判断对象是哪个类去创建的
+
+                ** 类里没有，就会找prototype里
+                    如果定义类的时候没有显示的构造函数，js解析器会自动生成一个空的构造函数
+
+                注意：
+                    原型对象也有原型,这样就构成了一条原型链，根据对象的复杂程度不同，原型链的长度也不同
+                        p对象的原型链： p对象 --> 原型 --> 原型 --> null
+                        obj对象的原型链： obj对象 --> 原型 --> null
+
+                        原型有啥用
+                            class声明类的底层就是依靠原型实现的
+                    
+                    原型链：
+                        - 读取对象属性时，会优先对象自身属性，
+                            如果对象中有，则使用，没有则去对象的原型中寻找
+                            如果原型中有，则使用，没有则去原型的原型中寻找
+                            直到找到Object对象的原型，(Objcet的原型没有原型（为null）)  //Objcet对象是所有原型的头
+                                如果依然没有找到，则返回undefined
+
+                    -作用域链，是找变量的链，找不到会报错
+                    -原型链，是找属性的链，找不到会返回undefined
+
+        */
+        console.log(p.__proto__.constructor)
+        console.log(p.__proto__)
+        console.log(p.constructor)
+        console.log(p.__proto__.__proto__) // 原型对象也有原型
+        console.log(p.__proto__.__proto__.__proto__) //null
+
+        const obj = {}
+
+
+       //浏览器提供了一个标准的访问原型的方式 检查某个对象的原型
+       //console.log(Object.getPrototypeOf(p))//Object有一个类方法，静态方法就叫getPrototypeOf()获取某个对象的原型
+                            //表示获取p对象的原型
+
+       //console.log(Object.getPrototypeOf(p) === p.__proto__)  //true
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
