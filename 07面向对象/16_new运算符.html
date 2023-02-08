@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new运算符</title>
+    <script>
+        /*
+        * 问题的的答案本身并不是很重要，重要的是解决问题的思路，遇到这个问题怎么解决
+            最好看英文更新快，用翻译工具帮助
+        */
+
+        /*
+            new运算符是创建对象时要使用的运算符
+            -使用new时，到底发生了那些事情
+            https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
+
+            When a function is called with the new keyword, the function will be used as a constructor.new will do the following things:
+
+            - 当使用new去调用一个函数时，这个函数将会作为构造函数调用，
+                使用new调用函数时，将会发生这些事：
+                    1.创建一个普通的JS对象（Object对象 {}）,为了方便，称其为新对象
+
+                    2.将构造函数的prototype属性设置为新对象的原型(指定原型)
+
+                    前两件事把对象的结构定好了，第一步创建新对象，把自己的空间留好，第二步定义原型，存储数据的空间指定好了
+
+                    3.使用实参来执行构造函数，并且将新对象设置为函数中的this
+
+                    4.如果构造函数返回的是一个非原始值，则该值会作为new运算的返回值返回（千万不要这么做）
+                        如果构造函数的返回值是一个原始值或者没有指定返回值，
+                            则新的对象将会作为返回值返回
+                            通常不会为构造函数指定访回值
+
+                    Creates a blank, plain JavaScript object. For convenience, let's call it newInstance.
+
+                    Points newInstance's [[Prototype]] to the constructor function's prototype property, if the prototype is an Object. Otherwise, newInstance stays as a plain object with Object.prototype as its [[Prototype]]. 
+
+                    Executes the constructor function with the given arguments, binding newInstance as the this context (i.e. all references to this in the constructor function now refer to newInstance).
+
+                    If the constructor function returns a non-primitive, this return value becomes the result of the whole new expression. Otherwise, if the constructor function doesn't return anything or returns a primitive, newInstance is returned instead. (Normally constructors don't return a value, but they can choose to do so to override the normal object creation process.)
+
+
+        */
+
+        function MyClass(){ // 调用new 它自己创建一个普通的js对象
+
+           // var obj = {} //类似这样创建对象
+                            //对象有两部分组成，一部分对象自身，还有一部分对象的原型，这一步创建对象自身
+
+           // var newInstance = {}
+                                        //MyClass的prototype成为这个newInstance它们所有的实例的原型
+           //  newInstance.__proto__ = MyClass.prototype  //构造函数的原型属性指向新对象的原型
+                                                           // 这也是一个类的prototype它是实例的原型的原因
+        
+           //return {name:"孙悟空"}
+           
+        }                        
+        
+        var mc = new MyClass()
+
+        console.log(mc)
+
+
+        new MyClass()  // new 就把function MyClass(){}当做构造函数调用,在它里面创建一个普通的JS对象
+
+        class Person{                                      // 1.先创建一个新的对象
+                                                           // 2.把Person的prototype属性设置为新对象的原型
+            constructor(){//说的是constructor(){}执行流程   //  3.执行constructor并且将新的对象设置为constructor当中的this
+                                                           // 4.最后返回返回值 (不用设置返回值，它会把新的对象作为返回值返回)
+            }
+        }
+
+        new Person()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
