@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的解构</title>
+    <script>
+
+        const obj = {name:"孙悟空", age: 18, gender:"男"}
+                                                                                    // 属性名:变量名
+        //let {name, age, gender} = obj //声明变量同时解构对象 //{name, age, gender}是{name:name, age:age, gender:gender}的简写
+        //console.log(name, age, gender)  //孙悟空 18 男
+
+        let name, age, gender                                //let name, age, gender {name, age, gender} = obj
+       // {name, age, gender} = obj //这样写会报错 js解析器会把{}与前面的语句连起来理解，那会理解成{}是代码块而不是解构赋值，在{}外面添加这个()可以解决问题
+       ;({name, age, gender} = obj)
+        console.log(name, age, gender);
+
+        let {address} = obj // 没有的属性返回undefined
+
+        console.log(address)// undefined
+
+        //可以通过 : 来指定一个别名    可以指定默认值   在obj里找address属性，如果有把address的值赋值给变量d，如果没有address，变量d的值就是默认值"水帘洞"
+        let {name:a, age:b, gender:c, add="花果山", address:d="水帘洞"} = obj // a b c 是别名 // 把obj里的name的值赋值给变量a 把obj里的age的值赋值给变量b 把obj里的gender的值赋值给变量c
+        console.log(a, b, c, add, d); // 孙悟空 18 男 花果山 水帘洞
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

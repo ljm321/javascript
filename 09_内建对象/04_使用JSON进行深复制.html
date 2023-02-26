@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用JSON进行深复制</title>
+    <script>
+
+        const obj = {
+            name:"孙悟空",
+            friend: {
+                name: "猪八戒",
+            },
+        }
+
+        //对obj进行浅复制
+        const obj2 = Object.assign({}, obj)
+        //obj.name = "猪八戒"  /修改的是对象内部存储的内存地址，覆盖了"孙悟空"的内存地址，内存当中创建的"孙悟空"内存地址是一旦创建无法修改，所以obj2.name = "孙悟空"
+
+        obj2.friend.name = "沙和尚"
+        console.log(obj2);//friend: Object { name: "沙和尚" } name: "孙悟空"
+        console.log(obj);//friend: Object { name: "沙和尚" } name: "孙悟空"
+        console.log(obj2.friend === obj.friend);// true 
+        console.log(obj === obj2);//false
+        
+        //对obj进行深复制
+        const obj3 = structuredClone(obj)
+        console.log(obj3 === obj);// false
+        console.log(obj3.friend === obj.friend);// false
+
+        //利用JSON来完成深复制
+        const str = JSON.stringify(obj)
+        const obj4 = JSON.parse(str)
+
+        const obj5 = JSON.parse(JSON.stringify(obj))
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

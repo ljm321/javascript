@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串的正则方法</title>
+    <script>
+
+        /*
+            split()
+                - 可以根据正则表达式来对一个字符串进行拆分
+            search()
+                - 可以去搜索符合正则表达式的内容第一次在字符串中出现的位置
+            replace()
+                - 根据正则表达式替换字符串中的指定内容
+            match()
+                - 根据正则表达式匹配字符串中符合要求的内容
+
+            matchAll()
+                - 根据正则表达式去匹配字符串中符合要求的内容(必须设置g 全局匹配)
+                - 它返回的是一个迭代器
+        */
+
+        let str = "a@b@c@d"
+
+        let result = str.split("@")
+
+        console.log(result);
+
+        str = "孙悟空abc猪八戒adc沙和尚"
+        result = str.split(/a[bd]c/)
+
+        console.log(result);
+
+        result = str.search("abc")
+        console.log(result)
+
+        str = "dajsdh13715678903jasdlakdkjg13457890657djashdjka13811678908sdadadasd"
+        //如果搜索的是手机号，但是手机号很多，而且手机号码也不确定，所以可以通过正则表达式来描述手机号
+
+        result = str.search(/1[3-9]\d{9}/)
+
+        result = str.replace(/1[3-9]\d{9}/,"哈哈哈") // 只匹配第一个，替换第一个
+        console.log(result);
+
+        result = str.replace(/1[3-9]\d{9}/g,"哈哈哈") // 正则表达式添加全局 g 表示把字符串中全部符合正则表达式的内容进行替换
+        console.log(result);
+
+        result = str.match(/1[3-9]\d{9}/g) // match() 正则表达式中的再提取"()"里面的内容提取不出来
+
+        result = str.matchAll(/1[3-9]\d{9}/g)
+        for(let item of result){
+            console.log(item);
+        };
+
+        result = str.matchAll(/1[3-9](\d{9})/g) // matchAll()可以再提取正则表达式中()里面的内容，把它们放到数组里
+        for(let item of result){
+            console.log(item);
+        };
+
+        //  /1[3-9](\d{9})/ 先把字符串中符合正则表达式中的内容提取出来，然后把提取出的内容按()里面的规则和所在的位置再提取一遍
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

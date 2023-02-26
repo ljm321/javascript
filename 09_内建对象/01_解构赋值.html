@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解构赋值</title>
+    <script>
+
+        /*
+            解构赋值
+        */
+
+        const arr = ["孙悟空", "猪八戒", "沙和尚"]
+
+        let a, b, c
+
+       // a = arr[0]
+       // b = arr[1]
+       // c = arr[2]
+
+      // [a, b, c] = ["孙悟空", "猪八戒", "沙和尚"]
+      // console.log(a, b, c); //孙悟空 猪八戒 沙和尚
+
+      //解构赋值
+      [a, b, c] = arr  //对原数组没有影响，只是把三个变量指向数组中的三个元素
+      console.log(a, b, c); //孙悟空 猪八戒 沙和尚
+
+      let [d, e, f, g] = ["唐僧", "白骨精", "蜘蛛精"] //声明同时解构
+      console.log(d, e, f, g); //唐僧 白骨精 蜘蛛精 undefined
+
+      let [h, j, k, l] = ["唐僧", "白骨精", "蜘蛛精" , "玉兔精"]
+      console.log(h, j, k, l); //唐僧 白骨精 蜘蛛精 玉兔精
+      //前面加个 ; 表示前面的语句已经结束，告诉JS解析器不要语句连续来理解从而出现错误
+      //;[h, j, k, l] = [1, 2, 3] //每一次解构赋值都会重新赋值，变量没有对应的元素，变量赋值为undefined
+     // console.log(h, j, k, l);   // 1 2 3 undefined 
+     ;[h, j, k = 77, l = l] = [1, 2, 3]  // k有默认值，数组有元素对应重新赋值，l有默认值是上一语句已赋值的l （l="玉兔精"）
+     console.log(h, j, k, l); //1 2 3 玉兔精
+
+     let [n1, n2] = [4, 5, 6, 7]
+     console.log(n1, n2);  // 4  5  其他的元素不赋值
+     
+     let [n4, n5, ...n3] = [4, 5, 6, 7] //解构数组时，可以使用...来设置获取多余的元素
+     console.log(n4, n5, n3);  // 4 5 [6, 7] 把剩余的元素放到数组里赋值给 n3
+
+     function fn(){
+        return ["二郎神", "猪八戒"]
+     };
+
+     let [name1, name2] = fn() // 把函数的返回值解构赋值给变量name1 name2  
+     console.log(name1, name2); // 二郎神 猪八戒
+
+     //可以通过解构赋值来快速交换两个变量的值
+     let a1 = 10
+     let a2 = 20
+
+     //let temp = a1
+     //a1 = a2
+     //a2 = temp
+
+     // 变量     数组字面量 解构赋值
+     ;[a1, a2] = [a2, a1] //左边的是变量  右边表示是自己的值 右边的是一个数组字面量里面有赋值的变量[a1, a2] = [a2=20, a1=10]
+
+     const arr2 = ["孙悟空", "猪八戒"]
+     console.log(arr2);
+
+     //交换数组中两个元素的位置
+     ;[arr2[0], arr2[1]] = [arr2[1], arr2[0]] //[ "猪八戒", "孙悟空" ]
+     console.log(arr2);
+
+     console.log("a1 =", a1);
+     console.log("a2 =", a2);
+
+     /*
+        数组中可以存储任意类型的数据，也可以存数组，
+            如果一个数组中的元素还是数组，则这个数组我们就称为是二维数组
+     */
+
+     const arr3 = [["孙悟空", 18, "男"], ["猪八戒", 28, "男"]] //一般开发中用来表示表格
+
+     console.log(arr3[0][1]);  //18
+
+     for(let stu of arr3){
+        for(let v of stu){
+            console.log(v);
+        };
+     };
+
+     let [[name3, age, gender], Arr] = arr3 //可以把一个数组["猪八戒", 28, "男"]通过解构赋值给一个变量Arr
+
+     console.log(name3, age, gender);//孙悟空 18 男
+     console.log(Arr); //["猪八戒", 28, "男"]
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

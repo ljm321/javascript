@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日期的格式化</title>
+    <script>
+
+        const d = new Date()
+
+        let result = d.toLocaleDateString() // 将日期转换为本地的字符串 
+                                                            // 代码的运行环境，现在代码运行到一个中文环境，本地的环境属于中文
+                                                            // 调用这个方法表示把日期对象里的数据转换成符合中国人习惯的字符串
+        console.log(result); // 2022/7/29
+
+        result = d.toLocaleTimeString() //将时间转换为本地的字符串
+        console.log(result);
+
+        result = d.toLocaleString() // 日期和时间转换为本地的字符串
+        console.log(result);
+
+        /*
+            toLocaleString()
+                - 可以将一个日期转换为本地时间格式的字符串的方法
+                - 参数：
+                    1.描述语言和国家信息的字符串        // 搜索"国家地区-语言代码"
+                        zh-CN 中文中国
+                        zh-HK  中文香港
+                        en-US  英文美国
+                        
+                    2.需要一个对象作为参数，在对象中可以通过对象的属性来对日期的格式进行配置
+                        dateStyle 日期的风格
+                        timeStyle 时间的风格
+                                值的可选
+                                full
+                                long
+                                medium
+                                short
+                        hour12 是否采用12小时制
+                               值
+                               true
+                               false
+
+                        weekday 星期的显示方式
+                                long
+                                short
+                                narrow
+                        year
+                                numeric       // 四位制的年份 2023年    
+                                2-digit      //两位制的年份  23年
+
+        */
+
+        result = d.toLocaleString("zh-HK")
+        console.log(result);
+
+        result = d.toLocaleString("zh-CN", {dateStyle:"full"})
+        console.log(result);
+
+        result = d.toLocaleString("zh-CN", {dateStyle:"full"}, {timeStyle:"full"})
+        console.log(result);
+
+        result = d.toLocaleString("zh-CN", {hour12:true})
+        console.log(result);
+
+        result = d.toLocaleString("zh-CN", {year:"numeric"})
+        console.log(result);
+
+        result = d.toLocaleString("zh-CN", {
+            year:"numeric",
+            month:"long", 
+            day:"2-digit", 
+            weekday:"short"
+        })
+        console.log(result);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

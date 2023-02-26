@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exec方法</title>
+    <script>
+
+        /*
+            re.exec()
+                - 获取字符串中符合正则表达式的内容
+
+            /a[a-z]c/ig     g 表示全局匹配，表示要设置匹配到字符串当中所有符合要求的内容
+        */
+        let str = "abcaecafcacc"
+
+        //提取str中符合axc格式的内容
+
+        //g表示全局匹配
+        let re = /a[a-z]c/ig
+
+        //每调用一次匹配一次，依次输出匹配到的内容
+        let result = re.exec(str)  // 表示用re这个正则表达式匹配str这个字符串，并且把这个字符串当中符合条件的内容提取出来
+                    //Array [ "abc" ]
+            result = re.exec(str)
+                    //Array [ "aec" ]
+        console.log(result);
+
+        re = /a([a-z])c/ig //先提取符合/a([a-z])c/的字符，再从符合的字符当中提取第二个字符出来
+        result = re.exec(str)
+        console.log(result); //Array [ "abc", "b" ]
+
+                              //              abc                    ([a-z]c) bc                                 ([a-z])  b   
+        re = /a(([a-z])c)/ig //先提取符合/a(([a-z])c)/的字符，再从符合的字符当中一起提取第二个第三个字符出来，最后从符合的字符当中提取第二个字符出来
+        result = re.exec(str) // ()配合exec 就是在符合规则的字符当中再提取字符  "("--> 开始  ")" -->结束  然后把所有提取出来的放在数组里
+        //console.log(result); //Array(3) [ "abc", "bc", "b" ]
+
+        while(result){
+            console.log(result[0], result[1], result[2])
+            result = re.exec(str)
+        };
+
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式中的字符</title>
+    <script>
+
+        /*
+            1.在正则表达式中大部分字符都可以直接写
+            2. | 在正则表达式中表示或
+            3. [] 表示 或           (里面的东西叫字符集)
+                [a-z]任意的小写字母
+                [A-Z]任意的大写字母
+                [a-zA-Z] 任意的字母  表示不考虑字母的大小写
+                [0-9] 任意数字
+                [a-zA-Z0-9] 任意数字任意的大小写字母 字符串中只要有一个是任意的大小字母中的一个或是任意数字中的一个都返回true
+
+            4.[^] 表示除了
+                [^x] 除了x  表示字符集取反  表示除了x还有其他的字符返回true，只有x返回false
+                                            "x"  false
+                                            "xgh" true
+            5. . 
+                表示除了换行符外的任意字符
+                        "\n"  false
+                        '#' true
+                        't' true  
+                        
+            6. 在正则表达式中使用\作为转义字符
+            7. 其他的字符集
+                \w 任意的单词字符[A-Za-z0-9_]
+                \W 除了单词字符 [^A-Za-z0-9_]
+                \d 任意数字[0-9]
+                \D 除了数字[^0-9]
+                \s 空格
+                \S 除了空格
+                \b 单词边界
+                \B 除了单词边界
+
+            8. 开头和结尾
+                ^ 表示字符串的开头  这个只有这样[^x]，才表示字符串中除了x还有其他的字符返回true，字符串中只有x返回false 
+                $ 表示字符串的结尾                      "x"  false
+                                                       "xbcd" true
+
+            正则主要是用来筛选提取数据判断数据是否合法，只用if判断写不出来的
+
+            
+        */
+       let re = /ab/
+
+       let result = re.test("abc")  //  正则表达式就是字符串的规则，写完规则以后，JS解析器会把规则和要检查的字符串进行匹配，配上就返回true，没配上就返回false
+       console.log(result);// true   //  re的正则表达式规则是 a在前b在后，ab在一起
+       result = re.test("acb")
+       console.log(result);// false
+       result = re.test("cba")
+       console.log(result);
+
+        re = /a|b/ // 字符串中只要有a或b返回true
+        re = /abc|bcd/ // 字符串中只要有abc或者bcd 返回true
+
+        re = /[abcdefghijklmn]/ // 表示字符串里面有任意一个正则表达式中的一个字母返回true
+        result = re.test("111f222");
+        console.log(result); //true
+        result = re.test("111o222");
+        console.log(result); //false
+
+        re = /[a-z]/  //表示为小写的a到z之间的任意一个字母
+        re = /[A-Za-z]/ // 这个只能表示[A-Za-z]这一个能任意大小写，其他的不能任意大小写       
+        re = /[a-z]/i //匹配模式i表示忽略大小写   匹配模式i 可以让所在的整个正则表达式忽略大小写
+
+        re = /[^a-z]/ //表示除了小写a-z还有其他字符的返回true 只有小写a-z的字符串返回false
+        result = re.test("H")
+        console.log(result); //true
+        result = re.test("a")
+        console.log(result); // false
+        result = re.test("bHKL")
+        console.log(result); //true
+
+        re = /./  // 表示除了换行符外，任意的字符串(不包含换行符)都返回true，有换行符的都返回false
+        result = re.test("#")
+        console.log(result) // true
+        result = re.test('.')
+        console.log(result); //true
+
+        re = /\./ //表示只匹配 . 返回true 其他的都返回false
+
+        re = /^/  //表示检查一个字符串里有没有开头，要和其他配合用
+        re = /a/ //字符串中的a不用考虑位置
+        re = /^a/ // 匹配开始位置的a 字符串中的a必须在开头 
+        result = re.test("abc")
+        console.log(result); // true
+        result = re.test("ba")
+        console.log(result); //false
+
+        re = /a$/ //匹配结束位置的a 表示匹配到a以后紧接着立刻结束了
+        result = re.test("a") // a既是开头也是结尾
+        console.log(result) // true
+        result = re.test("bca")
+        console.log(result) //true
+        result = re.test("abc")
+        console.log(result) // false
+
+        re = /^a$/ // 表示开头是a然后就结束了  以这个a开头也以这个a结尾，同一个a  a前面是开头，后面是结尾 aa这样表示a后面的是a再后面的才是结尾
+        result = re.test("a")
+        console.log(result); //true
+        result = re.test("aa")
+        console.log(result); //false
+
+        re = /^a$/ // 只匹配字母a，完全匹配，要求字符串必须和正则完全一致
+
+        re = /^abc$/ // 表示检查字符串是不是abc，必须跟正则表达式的规则一模一样,否则返回false
+        result = re.test("abc")
+        console.log(result); //true
+        result = re.test("abca")
+        console.log(result); //false
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

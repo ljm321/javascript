@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则表达式</title>
+    <script>
+
+        /*
+            量词 
+                {m} 正好有m个  字符串中有m个相同的字符返回true
+                {m,} 至少m个
+                {m, n} m-n个
+                + 一个及以上，相当于{1,}
+                * 任意数量的a  表示有没有a都行 0个a也行
+                ? 0-1次 {0, 1}  0次和1次 超过1次返回false  ba? （a出现的次数） b true ba true baa false
+        */
+
+        let re = /a{3}/
+    
+        let result = re.test("aaa")
+        console.log(result);  //true
+        result = re.test("aaaaa")
+        console.log(result); //true
+
+        re = /^ab{3}$/ // abbb
+        re = /^(ab){3}$/ // ababab
+
+                                        //[a-z] 对应的是字符串中的任意一个字符  [a-z]{3}对应的是字符串中连续的三个字符
+        re = /^[a-z]{3}$/ // 表示3个字母  [a-z]表示检查字符串中是否有一个字符是小写 [a-z]{3}表示检查字符串中有没有连续三个字符是小写
+        result = re.test("acd")
+        console.log(result); //true
+        result = re.test("a1d")
+        console.log(result); //false
+        result = re.test("abdc")
+        console.log(result); //false
+
+        re = /^[a-z]{1,}$/ // 表示找一个以上的字母(包含一个)
+        result = re.test("1")
+        console.log(result); //false
+        result = re.test("a")
+        console.log(result) //true
+        result = re.test("aabbdd")
+        console.log(result) //true
+
+        re = /^[a-z]{1,3}$/
+        result = re.test("ab")
+        console.log(result) //true
+        result = re.test("abz")
+        console.log(result) //true
+        result = re.test("abcd")
+        console.log(result) //false
+
+        re = /^ba+$/
+        result = re.test("b")
+        console.log(result) //false
+        result = re.test("ba")
+        console.log(result) //true
+        result = re.test("baa")
+        console.log(result) //true
+
+        re = /^ba*$/
+        result = re.test("b")
+        console.log(result) //true
+        result = re.test("ba")
+        console.log(result) //true
+        result = re.test("baa")
+        console.log(result) //true
+
+        re = /^ba?$/
+        result = re.test("baa")
+        console.log(result) //false
+        result = re.test("b")
+        console.log(result) //true
+        result = re.test("ba")
+        console.log(result) //true
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

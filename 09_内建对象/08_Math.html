@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math</title>
+    <script>
+        
+        /*
+            Math
+                - Math 一个工具类
+                - Math中为我们提供了数学运算相关的一些常量和方法
+                - 常量：
+                    Math.PI 圆周率
+
+                - 方法：
+                    Math.abs() 求一个数的绝对值
+                    Math.min()  求多个值中的最小值
+                    Math.max()  求多个值中的最大值
+                    Math.pow()  求x的y次幂  旧版本支持 // ** 但旧版本不支持
+                    Math.sqrt() 求一个数的平方根
+
+                    Math.floor() 向下取整 // 往小取整  1.9// 1  1.9>1   -1.9  // -2    -1.9>-2 
+                    Math.ceil()  向上取整 // 往大取整  1.2// 2           
+                    Math.round() 四色五入取整
+                    Math.trunc() 直接去除小数位
+
+                    Math.random() 生成一个0-1之间的随机数
+        */
+
+        console.log(Math);
+        console.log(Math.PI);
+
+        let result = Math.abs(10)
+        result = Math.abs(-10)
+
+        result = Math.min(10, 20, 30, 44, 55, -1)
+        result = Math.max(10, 20, 30, 44, 55, -1)
+        result = Math.pow(4, 2) // 4 ** 2
+        result = Math.sqrt(4) // 4 ** .5
+
+        result = Math.floor(1.2) //1
+        result = Math.ceil(1.2) //2
+        result = Math.round(1.4)
+        result = Math.trunc(1.5)
+
+        for(let i=0; i<1000; i++) {
+            result = Math.random()
+            console.log(1);
+            if(result === 0) {
+                console.log(result);
+            };
+        };
+
+        console.log("执行完毕了～～");
+
+        for (let i=0; i<50; i++) {
+            /*
+                生成0-5之间的随机数
+                    Math.random() --> 0 - 1
+                0 和 5 的概率要小一些   0.4以下才取0  0.5以上取1   
+                要概率相等可以 0 到 6 向下取整  
+
+                生成 0 - x 之间的随机数
+                    Math.round(Math.random() * x)
+
+                    Math.floor(Math.random() * (x + 1))  //floor的概率会相同
+            */
+
+            result = Math.round(Math.random() * 5)
+            console.log(result);
+
+            /*
+                生成 x-y 之间的随机数
+                
+                    Math.round(Math.random() * (y-x) + x)
+            */
+
+            // 1-6
+            //result1 = Math.round(Math.random() * 5 + 1)
+            //console.log(result1);
+
+            //11-20
+           // result2 = Math.round(Math.random() * 9 + 11)
+           // console.log(result);
+        };
+    </script>
+</head>
+<body></body>
+</html>

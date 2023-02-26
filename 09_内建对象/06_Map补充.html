@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map补充</title>
+    <script>
+
+        const map = new Map()
+
+        map.set("name", "孙悟空")
+        map.set("age", 18)
+        map.set({}, "呵呵")
+
+        //将map转换为数组 // Array.from 将其他数据转换为数组
+        //const arr = Array.from(map) //[["name", "孙悟空"], ["age", 18], [{}, "呵呵"]]
+        const arr = [...map] //[["name", "孙悟空"], ["age", 18], [{}, "呵呵"]]
+
+        console.log(arr);
+
+        const map2 = new Map([["name", "猪八戒"], ["age", 18], [{}, () =>{}]])
+        console.log(map2);
+
+        //遍历map
+        for(const entry of map){
+            const [key, value] = entry // 对entry的值进行解构赋值  entry是键值对数组 ["name", "孙悟空"] 把每个键值对放在数组里然后遍历，每一次赋值给entry
+            console.log(entry, key, value);
+        };
+
+        for(const [key, value] of map){
+            console.log(key, value);
+        };
+
+        map.forEach((value, key, c)=>{
+            console.log(value, key, c);
+        })
+
+        /*
+            map.keys() - 获取map的所有的key
+            map.values() - 获取map的所有的value
+            map.entries() - 获取map的所有的键值对
+        */
+
+        for(const key of map.keys()){
+            console.log(key);
+        };
+
+        for(const value of map.values()){
+            console.log(value);
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
