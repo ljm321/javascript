@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素节点</title>
+</head>
+<body>
+    <div id="box1">
+        我是box1
+        <span class="s1">我是s1</span>
+        <span class="s1">我是s1</span>
+    </div>
+
+    <span class="s1">我是s1</span>
+
+    <script>
+
+        /*
+            div元素的原型链
+                HTMLDivElement -> HTMLElement -> Element -> Node -> ...
+
+            通过元素节点对象获取其他节点的方法
+                element.childNodes 获取当前元素的子节点(会包含空白的子节点) 【空白的子节点算是文本节点】 "我是box1"本身就是一个text文本节点了，所以他后面的空格是被包含进去的
+
+                element.children 获取当前元素的子元素
+
+                element.firstElementChild 获取当前元素的第一个子元素
+                element.lastElementChild 获取当前元素的最后一个子元素
+                element.nextElementSibling 获取当前元素的下一个兄弟元素
+                element.previousElementSibling 获取当前元素的前一个兄弟元素
+                element.parentNode 获取当前元素的父节点
+                element.tagName 获取当前元素的标签名
+            
+        */
+
+        const box1 = document.getElementById("box1")
+        console.log(box1);
+
+        const spans = box1.getElementsByTagName("span")
+        console.log(spans);
+        console.log(spans.length);
+
+        const cns = box1.childNodes
+        console.log(cns.length);
+
+        const children = box1.children
+        console.log(children.length);
+    </script>
+</body>
+</html>

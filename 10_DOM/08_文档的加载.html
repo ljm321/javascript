@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档的加载</title>
+    <script>
+        /*
+            网页是自上向下加载的，如果将js代码编写到网页的上边，
+                js代码在执行时，网页还没有加载完毕，这时会出现无法获取到DOM对象的情况   浏览器还没有根据代码渲染生成DOM对象
+
+                window.onload 事件会在窗口中的内容加载完毕之后才触发  //会等待所有文档加载完毕，事件才会触发
+                document的DOMContentLoaded事件会在当前文档加载完毕之后触发
+
+            如何解决这个问题：
+                1. 将script标签编写到body的最后
+                2. 将代码编写到window.onload的回调函数中
+                3. 将代码编写到document对象的DOMContentLoaded的回调函数中（执行时机比window.onload更早）
+                     DOMContentLoaded只能用addEventListener方式绑定
+                4. 将代码编写到外部的js文件中，然后以defer的形式进行引入(执行时机比DOMContentLoaded更早)
+
+                    执行时机比较
+                     1 > 4　> 3 > 2
+        
+        */
+
+        window.onload = function(){
+            const btn = document.getElementById("btn")
+            console.log(btn);
+        };
+
+        window.addEventListener("load", function () {
+            const btn = document.getElementById("btn");
+            btn.onclick = function(){         //单击响应函数
+            alert("我又被点了一下～～");
+        };
+        })
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const btn1 = document.getElementById("btn1")
+            alert(btn1);
+        })
+
+
+    </script>
+
+    <script defer src="./script/script.js"></script>
+</head>
+<body>
+    <button id="btn">点我一下</button>
+    <button id="btn1">点我一下</button>
+    <hr>
+    <button id="btn2">点我一下</button>
+
+    <!-- 向网页中添加了另一个网页，有两个文档了 -->
+    <iframe src="https://www.lilichao.com" frameborder="0"></iframe> 
+
+    <script>
+
+        const btn = document.getElementById("btn")
+        console.log(btn);
+
+    </script>
+</body>
+</html>

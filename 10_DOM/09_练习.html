@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <style>
+        .outer{
+            width: 640px;
+            margin: 50px auto;
+            text-align: center;
+        }
+    </style>
+    <script>
+
+        /*
+           1. 找对象 要完成这个功能，这个功能涉及到几个对象，先把这些对象都找到
+           2. 绑定事件 这件事是什么时候发生的，是点击按钮的时候发生的，还是按键盘的时候发生的，要确定事件发生的时机，然后给对应的元素去把这个事件绑定上，绑定后，事件发生后你要做什么，这个做什么就要设置函数了
+
+        */
+        window.onload = function (){
+
+            //获取info
+            const info = document.getElementById("info")
+
+            /*
+                点击按钮切换图片
+            */
+
+            //获取图片
+            const img = document.getElementsByTagName("img")[0]
+
+            //获取两个按钮
+            const prev = document.getElementById("prev")
+            const next = document.getElementById("next")
+
+            //写一点测一点，让错误更早的发现，不然，错误不好定位
+            //alert(img);
+           // alert(prev);
+            //alert(next);
+
+            //创建一个数组来存储图片的路径 //方便点击按钮时img属性的修改 ** 通过修改索引，修改图片的效果
+            const imgArr = [
+                "./images/1.png", 
+                "./images/2.png", 
+                "./images/3.png", 
+                "./images/4.png", 
+                "./images/5.png"]
+
+            //创建一个变量记录当前图片的索引
+            let current = 0
+
+            info.textContent = `总共 ${imgArr.length} 张图片, 当前第 ${current + 1}张`
+
+            //上一张
+            prev.onclick = function(){
+                //测试点击上一张，会不会执行
+                //alert("上一张");
+               // img.src = "./images/1.png"
+               //数组的索引需要动态的计算，不能写死
+               //img.src = imgArr[0]
+               //上一张，切换到前面的图片，索引会递减，所以用自减
+               current--
+
+               //检查current的值是否合法 //数组的索引有限制，小于0 imgArr[current] 数组中没有值对应，会报undefined
+               if(current < 0){
+                    //current = 0
+                    current = imgArr.length - 1
+               };
+
+               img.src = imgArr[current]
+
+               info.textContent = `总共 ${imgArr.length} 张图片, 当前第 ${current + 1}张`
+            };
+
+            //点击next按钮后，切换图片
+            next.onclick = function(){
+                //测试点击，会不会执行
+                //alert("下一张");
+
+                //切换图片 --> 2.png 修改图片就是修改img的src属性
+                //img.src = "./images/2.png"
+                //img.src = imgArr[1]
+                //下一张，切换到后面的图片，令数组索引递增，所以用自增
+                current++
+
+               //检查current的值是否合法 //数组的索引有限制，大于imgArr.length-1 ,imgArr[current]在数组中没有值对应，会报undefined                
+                if(current > imgArr.length - 1){
+                    //current = imgArr.length -1
+                    current = 0
+                };
+
+                img.src = imgArr[current]
+
+                info.textContent = `总共 ${imgArr.length} 张图片, 当前第 ${current + 1}张`
+            };
+        };
+    </script>
+</head>
+<body>
+    
+    <div class="outer">
+        <p id="info">
+            总共n张图片，当前m张
+        </p>
+        <div class="img-wrapper">
+            <img src="./images/1.png" alt="这是一个图片">
+        </div>
+
+        <div class="btn-wrapper">
+            <button id="prev">上一张</button>
+            <button id="next">下一张</button>
+        </div>
+    </div>
+</body>
+</html>
