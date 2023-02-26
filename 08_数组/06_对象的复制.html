@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象复制</title>
+    <script>
+        /*
+            非破坏方法:
+                这个方法怎么调用，对于原来的数组不会产生任何的影响，不会改变数组的内容
+
+            **拷贝，至少你变量指向的地址要发生变化
+
+
+            const arr =  ["孙悟空", "猪八戒", "沙和尚"]
+            const arr2 = arr
+            const arr3 = arr.slice()
+
+                           内存
+
+
+            变量     值          数组
+                            
+            const arr2 = arr
+            arr     0×11  -->▕-------------------------------▏
+                              ▏0×11←（数组的内存地址）        ▏
+            arr2    0×11  --> ▏                             ▏
+                             ▏---------------------------- ▏
+                             ▏ 0×22     0×23     0×24     ▏（字符串的内存地址）
+                             ▏---------------------------▏
+                                ↓        ↓         ↓
+                                ↓        ↓         ↓
+                               0×22     0×23      0×24
+                              孙悟空    猪八戒    沙和尚
+                                ↑         ↑         ↑
+ const arr3 = arr.slice()       ↑         ↑         ↑
+            arr3    0×12     ▏---------------------------▏
+                             ▏ 0×22    0×23       0×24   ▏
+                             ▏                          ▏
+                            ▏--------------------------|
+                            ▏ 0×12                     ▏
+                            ▏-------------------------▏
+        
+
+        */
+       const arr = ["孙悟空", "猪八戒", "沙和尚"]
+
+       //const arr2 = arr //不是复制 把arr内存地址赋值给arr2
+       // arr2[0] = "唐僧"
+
+       //如何去复制一个对象，复制必须要产生新的对象
+       //当调用slice()且没有参数时，会产生一个新的数组对象，从而完成对数组的复制  产生新的数组对象，并把全部元素存储在里面
+       const arr3 = arr.slice()
+
+       //console.log(arr === arr2)
+       //console.log(arr2)
+
+       arr3[0] = "唐僧"
+
+       console.log(arr)
+       console.log(arr3)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

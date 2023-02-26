@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择排序</title>
+    <script>
+        /*
+            1,3,2,8,0,5,7,6,4,9
+            1,2,3,0,5,7,6,4,8,9  8与9 不用比较
+            1,2,0,3,5,6,4,7,8,9  7与8 8与9 不用比较
+            1,0,2,3,5,4,6,7,8,9  6与7 7与8  8与9 不用比较 后面已经确定的排序就不用比较了
+
+            内层循环的条件 i < arr.length-1-j
+            减少了内层循环的执行的次数，提升了代码执行性能，让代码执行的速度更快
+        */
+
+        const arr = [9,1,3,2,8,0,5,7,6,4]
+        for(let j=0; j<arr.length-1; j++){
+            for(let i=0; i<arr.length-1-j; i++){
+                if(arr[i] > arr[i + 1]){
+                    let temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                };
+            };
+        };
+
+        console.log(arr);
+
+        const newArr = [9,1,3,2,8,0,5,7,6,4]
+        for(let i=0; i<newArr.length; i++){
+
+            /*
+                选择排序
+                    - 取出一个元素，然后将其他元素和该元素进行比较，如果其他元素比该元素小则交换两个元素的位置
+                
+                    选择一个元素进行比较，符号条件的交换位置，再用符合条件的元素和其他元素进行比较，直到结束
+            
+            */
+            //遍历数组
+            //console.log(arr[i]);
+            //把i后边的元素与i进行比较 所以j的初始值为 j=i+1
+            for(let j=i+1; j<newArr.length; j++){
+
+                // 升序排列 arr[i]<arr[j] 不用更换位置， arr[i]>arr[j]要更换位置
+                if(newArr[i]>newArr[j]){
+                    //交换两个元素的位置
+                    let temp  = newArr[i];
+                    newArr[i] = newArr[j];
+                    newArr[j] = temp;
+                };
+
+            };
+        };
+
+        console.log(newArr);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

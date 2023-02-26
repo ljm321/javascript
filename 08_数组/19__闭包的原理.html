@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包的原理</title>
+    <script>
+
+        let a = "全局变量a"
+
+        /*
+            函数的作用域，在函数创建时就已经确定的(词法作用域)
+                和调用的位置无关
+
+            闭包利用的就是词法作用域 
+        */
+
+        function fn(){
+            console.log(a);
+        };                  //这个函数作用域是在全局作用域中定义的，这个函数作用域的外层作用域就是全局作用域
+
+        // fn(); //全局变量a
+
+        function fn2(){
+            let a = "fn2中的a"
+
+            fn(); //变量找谁不是看函数在哪里调用的，要看调用的函数的外层作用域是谁
+        };
+
+        fn2(); 
+
+        function fn3(){
+            let a = "fn3中的a"
+
+            function fn4(){
+                console.log(a);
+            };
+
+            fn4();
+        };
+
+        fn3(); //fn3中的a
+
+        function fn5(){
+            let a = "fn5中的a"
+
+            function fn6(){
+                console.log(a);
+            };
+
+            return fn6;
+        };
+
+        let fn6 = fn5();
+
+        fn6(); // fn5中的a
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
